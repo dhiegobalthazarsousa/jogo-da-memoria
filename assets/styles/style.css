@@ -4,6 +4,7 @@ body{
     align-items: center;
     min-height: 100vh;
     background: #fc1e8a;
+    user-select: none;
 }
 
 .container{
@@ -40,10 +41,11 @@ body{
 .game{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
     width: 430px;
     height: 430px;
-    border: 1px solid red;
     transform-style: preserve-3d;
     perspective: 500px;
 }
@@ -56,6 +58,32 @@ body{
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    font-size: 3em;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transition: 0.50s;
+    transition: 0.50s;
+}
+
+.item::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #404040;
+    -webkit-transform: rotateY(0deg);
+    -webkit-transition: 0.50s;
+    transition: 0.50s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.item.boxOpen{
+    transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after{
+    transform: rotateY(180deg)
 }
 
 h2{
